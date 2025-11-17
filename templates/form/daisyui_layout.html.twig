@@ -11,15 +11,15 @@
     {%- set prepend = not (money_pattern starts with '{{') -%}
     {%- set append = not (money_pattern ends with '}}') -%}
     {%- if prepend or append -%}
-        <div class="input-group {{ group_class|default('') }}">
+        <label class="input w-full">
             {%- if prepend -%}
-                <span class="input-group-text">{{ money_pattern|form_encode_currency }}</span>
-            {%- endif -%}
+                {{ money_pattern|form_encode_currency }}
+            {% endif %}
             {{- block('form_widget_simple') -}}
             {%- if append -%}
-                <span class="input-group-text">{{ money_pattern|form_encode_currency }}</span>
-            {%- endif -%}
-        </div>
+                {{ money_pattern|form_encode_currency }}
+            {% endif %}
+        </label>
     {%- else -%}
         {{- block('form_widget_simple') -}}
     {%- endif -%}
